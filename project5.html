@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BITTA">
+  <title>BITTA</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="page-transition" id="page-transition"></div>
+
+  <!-- ─── Lightbox ──────────────────────────────── -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lightbox-close" id="lightbox-close">ESC / CLOSE</button>
+    <img src="" alt="" id="lightbox-img">
+    <figcaption id="lightbox-caption"></figcaption>
+  </div>
+
+  <!-- ─── Header ─────────────────────────────── -->
+  <header class="header">
+    <div class="header-name">LAYNE BENNETT</div>
+    <nav class="header-nav">
+      <a href="index.html">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ─── Project Page ───────────────────────── -->
+  <div class="project-page">
+
+    <!-- Back navigation -->
+    <a href="index.html" class="back-link" aria-label="Back to work">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <polyline points="19 12 5 12"/>
+        <polyline points="12 19 5 12 12 5"/>
+      </svg>
+      ALL WORK
+    </a>
+
+    <!-- Hero images -->
+    <div class="project-image-pair">
+      <figure class="project-figure">
+        <img src="https://pub-7d345b05ad914f3cbbdcba01890276c6.r2.dev/e08f2d88_original.jpg" alt="ESP32 Module" loading="lazy">
+        <figcaption>ESP32 Module</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="https://pub-7d345b05ad914f3cbbdcba01890276c6.r2.dev/b21c2ef5_original.jpg" alt="BLE Tag Identifier" loading="lazy">
+        <figcaption>BLE Tag Identifier</figcaption>
+      </figure>
+    </div>
+
+    <!-- Project info -->
+    <div class="project-content">
+
+      <div class="project-meta fade-in">
+        <h1 class="project-title">B.I.T.T.A.</h1>
+        <span class="project-year">2026</span>
+      </div>
+
+      <p class="project-description fade-in" style="transition-delay:0.1s">
+        Currently I'm experimenting with a project using BLE beacons to interface with an ESP32 microcontroller and other peripheral components with a goal to make a proximity-triggered user detection system. I was able to transmit WAV files from the other ESP32 to an old Bluetooth speaker I had lying around using the ESP32-A2DP library. This project also integrates the Kokoro API by making TTS requests to an AI-powered local server running on Python. Door opening events are detected with a simple IR sensor. With these put together, different users can be equipped with unique BLE tag identifiers and get tailored greetings from the speaker once they walk through the front door.
+      </p>
+
+      <div class="project-tags fade-in" style="transition-delay:0.2s">
+        <span class="project-tag">Bluetooth</span>
+        <span class="project-tag">ESP32</span>
+        <span class="project-tag">Embedded Systems</span>
+        <span class="project-tag">Proximity Detection</span>
+        <span class="project-tag">Smart Home</span>
+      </div>
+
+      <div class="project-links fade-in" style="transition-delay:0.3s">
+        <a href="https://github.com/laynebennett/B.I.T.T.A." class="project-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+          </svg>
+          SOURCE
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

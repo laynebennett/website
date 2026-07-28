@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="1'mote">
+  <title>1'mote</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="page-transition" id="page-transition"></div>
+
+  <!-- ─── Lightbox ──────────────────────────────── -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lightbox-close" id="lightbox-close">ESC / CLOSE</button>
+    <img src="" alt="" id="lightbox-img">
+    <figcaption id="lightbox-caption"></figcaption>
+  </div>
+
+  <!-- ─── Header ─────────────────────────────── -->
+  <header class="header">
+    <div class="header-name">LAYNE BENNETT</div>
+    <nav class="header-nav">
+      <a href="index.html">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ─── Project Page ───────────────────────── -->
+  <div class="project-page">
+
+    <!-- Back navigation -->
+    <a href="index.html" class="back-link" aria-label="Back to work">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <polyline points="19 12 5 12"/>
+        <polyline points="12 19 5 12 12 5"/>
+      </svg>
+      ALL WORK
+    </a>
+
+    <!-- Hero images -->
+    <div class="project-image-pair">
+      <figure class="project-figure">
+        <img src="https://pub-7d345b05ad914f3cbbdcba01890276c6.r2.dev/20260727_221455.png" alt="1'mote" loading="lazy">
+        <figcaption>1'mote</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="https://pub-7d345b05ad914f3cbbdcba01890276c6.r2.dev/bobass.PNG" alt="PCB Rendering" loading="lazy">
+        <figcaption>PCB Rendering</figcaption>
+      </figure>
+    </div>
+
+    <!-- Project info -->
+    <div class="project-content">
+
+      <div class="project-meta fade-in">
+        <h1 class="project-title">1'mote</h1>
+        <span class="project-year">2026</span>
+      </div>
+
+      <p class="project-description fade-in" style="transition-delay:0.1s">
+        
+My current venture is creating 1'mote, a programmable infrared remote that can store many remotes' signals into one central device. 1'mote's goal is to replace cheap or bulky remotes with a rechargeable, practical, stylish, and all-in-one solution. It combines PCB design, firmware engineering, signal processing, hardware selection, and CAD modeling into one.
+      </p>
+
+      <div class="project-tags fade-in" style="transition-delay:0.2s">
+        <span class="project-tag">ESP32-C3</span>
+        <span class="project-tag">Infrared Signals</span>
+        <span class="project-tag">Embedded Systems</span>
+        <span class="project-tag">Product Design</span>
+        <span class="project-tag">C++</span>
+      </div>
+
+      <div class="project-links fade-in" style="transition-delay:0.3s">
+
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

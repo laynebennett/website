@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RISC-V Processor">
+  <title>RISC-V Processor</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="page-transition" id="page-transition"></div>
+
+  <!-- ─── Lightbox ──────────────────────────────── -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lightbox-close" id="lightbox-close">ESC / CLOSE</button>
+    <img src="" alt="" id="lightbox-img">
+    <figcaption id="lightbox-caption"></figcaption>
+  </div>
+
+  <!-- ─── Header ─────────────────────────────── -->
+  <header class="header">
+    <div class="header-name">LAYNE BENNETT</div>
+    <nav class="header-nav">
+      <a href="index.html">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ─── Project Page ───────────────────────── -->
+  <div class="project-page">
+
+    <!-- Back navigation -->
+    <a href="index.html" class="back-link" aria-label="Back to work">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <polyline points="19 12 5 12"/>
+        <polyline points="12 19 5 12 12 5"/>
+      </svg>
+      ALL WORK
+    </a>
+
+    <!-- Hero image pair -->
+    <div class="project-image-pair">
+      <figure class="project-figure">
+        <img src="https://pub-7d345b05ad914f3cbbdcba01890276c6.r2.dev/96d757e5_original.jpg" alt="Hardware-scheduled pipeline schematic" loading="lazy">
+        <figcaption>Hardware-scheduled pipeline</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="https://pub-7d345b05ad914f3cbbdcba01890276c6.r2.dev/40e7fc7b_original.jpg" alt="Software-scheduled pipeline schematic" loading="lazy">
+        <figcaption>Software-scheduled pipeline</figcaption>
+      </figure>
+    </div>
+
+    <!-- Project info -->
+    <div class="project-content">
+
+      <div class="project-meta fade-in">
+        <h1 class="project-title">RISC-V Processor</h1>
+        <span class="project-year">2025</span>
+      </div>
+
+      <p class="project-description fade-in" style="transition-delay:0.1s">
+        The goal of this project was to design and create a RISC-V processor in VHDL. Hardware-scheduled pipeline and software-scheduled pipeline schematics are shown above. A single-cycle design was also created to compare performances between processor structures.In this project I designed the schematics, determined optimizations best fit for the requirements, wrote component and test code, and analyzed final timing results. I verified correct operation through simulation with a custom testbench, ensuring that instruction execution, register transfers, and memory interactions behaved as expected across pipeline stages.
+      </p>
+
+      <div class="project-tags fade-in" style="transition-delay:0.2s">
+        <span class="project-tag">VHDL</span>
+        <span class="project-tag">RISC-V</span>
+        <span class="project-tag">Digital Design</span>
+        <span class="project-tag">Verilog</span>
+        <span class="project-tag">Simulation</span>
+        <span class="project-tag">Timing Analysis</span>
+      </div>
+
+      <div class="project-links fade-in" style="transition-delay:0.3s">
+        <a href="https://github.com/laynebennett/CPRE3810-toolflow" class="project-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+          </svg>
+          SOURCE
+        </a>
+        <a href="https://drive.google.com/file/d/1ZqWbVIYICl49YBmJBbsZwG_DXa2TKiJU/view?usp=sharing" class="project-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          WRITE-UP
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+/*
+  # Security & performance headers for all pages
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+  # Cache HTML pages briefly (they change on deploy)
+  Cache-Control: public, max-age=0, must-revalidate
+
+/*.css
+  # CSS — immutable on Cloudflare Pages (content-hashed filenames on CI)
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+# Allow video/image streaming from R2
+# (Set CORS on your R2 bucket too — this covers the Pages side)
+/videos/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=86400
+
+/images/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=86400

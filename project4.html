@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Taco Delivery Bot">
+  <title>Taco Delivery Bot</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="page-transition" id="page-transition"></div>
+
+  <!-- ─── Lightbox ──────────────────────────────── -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lightbox-close" id="lightbox-close">ESC / CLOSE</button>
+    <img src="" alt="" id="lightbox-img">
+    <figcaption id="lightbox-caption"></figcaption>
+  </div>
+
+  <!-- ─── Header ─────────────────────────────── -->
+  <header class="header">
+    <div class="header-name">LAYNE BENNETT</div>
+    <nav class="header-nav">
+      <a href="index.html">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ─── Project Page ───────────────────────── -->
+  <div class="project-page">
+
+    <!-- Back navigation -->
+    <a href="index.html" class="back-link" aria-label="Back to work">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <polyline points="19 12 5 12"/>
+        <polyline points="12 19 5 12 12 5"/>
+      </svg>
+      ALL WORK
+    </a>
+
+    <!-- Hero images -->
+    <div class="project-image-pair">
+      <figure class="project-figure">
+        <img src="https://pub-7d345b05ad914f3cbbdcba01890276c6.r2.dev/19f90225_original.jpg" alt="Finished CyBot" loading="lazy">
+        <figcaption>Finished CyBot</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="https://pub-7d345b05ad914f3cbbdcba01890276c6.r2.dev/f85f4b06_original.jpg" alt="GUI" loading="lazy">
+        <figcaption>GUI</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="https://pub-7d345b05ad914f3cbbdcba01890276c6.r2.dev/39133ae8_original.jpg" alt="Communication Protocol" loading="lazy">
+        <figcaption>Communication Protocol</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="https://pub-7d345b05ad914f3cbbdcba01890276c6.r2.dev/faf21e77_original.jpg" alt="Environmental Diagram" loading="lazy">
+        <figcaption>Environmental Diagram</figcaption>
+      </figure>
+    </div>
+
+    <!-- Project info -->
+    <div class="project-content">
+
+      <div class="project-meta fade-in">
+        <h1 class="project-title">Taco Delivery Bot</h1>
+        <span class="project-year">2025</span>
+      </div>
+
+      <p class="project-description fade-in" style="transition-delay:0.1s">
+        The goal of this project was to work in a group to create a semi-autonomous food delivery system built on a hacked Roomba
+featuring servo-mounted IR sensors and controlled via a remote GUI. Firmware is written in C and GUI is written in Python.The Roomba represents a taco delivery vehicle with a given number of tacos in its inventory. For the environment we used tape to mark the roads, and PVC pipes of varying heights and diameters to represent the signs, tree, customers, and curb. The robot scanned these objects and correctly identified them to navigate the terrain. A remote operator with no view of the randomized environment controlled the movement of the bot until a curb was hit, after which autonomous customer scanning would occur. Once complete, the robot plays a sound signifying it is complete, and the operator returns it to the start in order to refuel.My role in the project was to develop much of the sensor/object recognition firmware for the servo mounted IR sensor, ground-facing IR sensors, and bump sensors. I also implemented the object detection and placement on the GUI as well.
+      </p>
+
+      <div class="project-tags fade-in" style="transition-delay:0.2s">
+        <span class="project-tag">C</span>
+        <span class="project-tag">Python</span>
+        <span class="project-tag">Embedded Systems</span>
+        <span class="project-tag">Robotics</span>
+        <span class="project-tag">Sensor Integration</span>
+        <span class="project-tag">GUI Development</span>
+      </div>
+
+      <div class="project-links fade-in" style="transition-delay:0.3s">
+        <a href="https://github.com/laynebennett/288Project" class="project-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+          </svg>
+          SOURCE
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

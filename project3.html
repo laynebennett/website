@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Theremin Digital Twin">
+  <title>Theremin Digital Twin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="page-transition" id="page-transition"></div>
+
+  <!-- ─── Lightbox ──────────────────────────────── -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lightbox-close" id="lightbox-close">ESC / CLOSE</button>
+    <img src="" alt="" id="lightbox-img">
+    <figcaption id="lightbox-caption"></figcaption>
+  </div>
+
+  <header class="header">
+    <div class="header-name">LAYNE BENNETT</div>
+    <nav class="header-nav">
+      <a href="index.html">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="project-page">
+
+    <a href="index.html" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <polyline points="19 12 5 12"/>
+        <polyline points="12 19 5 12 12 5"/>
+      </svg>
+      ALL WORK
+    </a>
+
+    <!-- Hero images -->
+    <div class="project-image-pair">
+      <figure class="project-figure">
+        <img src="https://pub-7d345b05ad914f3cbbdcba01890276c6.r2.dev/4ec85f82_original.jpg" alt="Off-Chip Schematic" loading="lazy">
+        <figcaption>Off-Chip Schematic</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="https://pub-7d345b05ad914f3cbbdcba01890276c6.r2.dev/84d2777a_original.jpg" alt="Integrated Circuit Layout" loading="lazy">
+        <figcaption>Integrated Circuit Layout</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="https://pub-7d345b05ad914f3cbbdcba01890276c6.r2.dev/6ace9554_original.jpg" alt="Breadboard Implementation" loading="lazy">
+        <figcaption>Breadboard Implementation</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="https://pub-7d345b05ad914f3cbbdcba01890276c6.r2.dev/a5f2b567_original.jpg" alt="High-Level Design Schematic" loading="lazy">
+        <figcaption>High-Level Design Schematic</figcaption>
+      </figure>
+    </div>
+
+    <div class="project-content">
+
+      <div class="project-meta fade-in">
+        <h1 class="project-title">Theremin Digital Twin</h1>
+        <span class="project-year">2025</span>
+      </div>
+
+      <p class="project-description fade-in" style="transition-delay:0.1s">
+        The goal of this project was to design a theremin-like circuit and develop a chip layout in the Cadence software suite. In addition, the circuit was to be developed physically on a breadboard.The circuit needed a dual-oscillator setup, with the ability to control each oscillator’s frequency and output amplitude with a photoresistor, which effectively allows for theremin-like operation. The oscillators must operate roughly in the 20-20k Hz frequency range, as that is the range audible to human ears. Additional photoresistors controlled the amplitude of each oscillator's output. These photoresistors are to be arranged in a matrix as shown on the breadboard.My role in this project was to design the amplifier portion of the circuit and create the on-chip digital twin in Cadence.
+      </p>
+
+      <div class="project-tags fade-in" style="transition-delay:0.2s">
+        <span class="project-tag">Analog Circuit Design</span>
+        <span class="project-tag">Cadence</span>
+        <span class="project-tag">SoC</span>
+        <span class="project-tag">Breadboard Prototype</span>
+        <span class="project-tag">Embedded Systems</span>
+      </div>
+
+      <div class="project-links fade-in" style="transition-delay:0.3s">
+        <a href="https://drive.google.com/file/d/1FJ5XWd3M0IIfgxzWrLRTi94rs_7sf_h4/view?usp=sharing" class="project-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          WRITE-UP
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
