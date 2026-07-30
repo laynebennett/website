@@ -652,18 +652,23 @@ img { display: block; max-width: 100%; }
     min-height: 100vh;
     flex-direction: column;
     align-items: center;
-    padding: calc(var(--header-h) + 48px) 20px 64px;
+    padding: calc(var(--header-h) + 48px) 20px 0;
     overflow: visible;
     gap: 48px;
   }
 
-  /* Portrait: pull out of absolute flow, show above grid */
+  /* Portrait: pull out of absolute flow, show below thumbs on mobile */
   .portrait-wrapper {
     position: relative;
     left: auto;
     bottom: auto;
     transform: none;
-    margin-bottom: 32px;
+    margin-bottom: 0;
+    order: 2;
+  }
+
+  .thumbs-wrapper {
+    order: 1;
   }
   .portrait-img {
     height: 44vh;
