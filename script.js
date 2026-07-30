@@ -84,9 +84,19 @@ function positionThumbs(thumbs) {
   });
 }
 
-function animateFloat(thumbs) {
-  const AMP = 30;
+const AMP = 30;
 
+function floatOffset(thumb) {
+  const t     = S.tick * 0.00042;
+  const phase = parseFloat(thumb.dataset.phase) || 0;
+  const spd   = parseFloat(thumb.dataset.spd)   || 1;
+  return {
+    fx: Math.sin(t * spd + phase)        * AMP * 0.6,
+    fy: Math.cos(t * spd * 0.75 + phase) * AMP,
+  };
+}
+
+function animateFloat(thumbs) {
   (function loop() {
     S.tick++;
     if (window.innerWidth > 768) {
@@ -160,9 +170,13 @@ function initDraggable() {
     function startReturn() {
       stopReturn();
       returnTimer = setTimeout(() => {
+        // Float may have been running during the 1s delay; capture actual visual position
+        // (dataset.bx is the base, float adds fx on top) so the return starts from where
+        // the thumb visually is rather than jumping to the base coordinate.
+        const { fx: fxNow, fy: fyNow } = floatOffset(thumb);
+        const startBX = (parseFloat(thumb.dataset.bx) || 0) + fxNow;
+        const startBY = (parseFloat(thumb.dataset.by) || 0) + fyNow;
         thumb.dataset.sliding = '1';
-        const startBX = parseFloat(thumb.dataset.bx) || 0;
-        const startBY = parseFloat(thumb.dataset.by) || 0;
         let progress = 0;
         (function step() {
           const ox = parseFloat(thumb.dataset.origbx) || 0;
@@ -179,8 +193,10 @@ function initDraggable() {
           thumb.style.transform =
             `translate(calc(-50% + ${bx}px), calc(-50% + ${by}px)) rotate(0deg)`;
           if (progress >= 1) {
-            thumb.dataset.bx = ox;
-            thumb.dataset.by = oy;
+            // Subtract float offset so float resumes exactly at home position
+            const { fx, fy } = floatOffset(thumb);
+            thumb.dataset.bx = ox - fx;
+            thumb.dataset.by = oy - fy;
             delete thumb.dataset.sliding;
             returnRaf = null;
             return;
@@ -190,13 +206,21 @@ function initDraggable() {
       }, 1000);
     }
 
-    function stopSlide() {
+    function stopSlide(adjustForFloat = true) {
       if (slideRaf) { cancelAnimationFrame(slideRaf); slideRaf = null; }
+      if (adjustForFloat) {
+        // Slide renders without fx/fy; subtract them so float resumes at the same visual spot
+        const { fx, fy } = floatOffset(thumb);
+        thumb.dataset.bx = (parseFloat(thumb.dataset.bx) || 0) - fx;
+        thumb.dataset.by = (parseFloat(thumb.dataset.by) || 0) - fy;
+      }
       delete thumb.dataset.sliding;
     }
 
     function startSlide() {
-      stopSlide();
+      // Pass false: at flick-start the float was paused (dragging flag blocked it),
+      // so dataset.bx IS the visual position — don't subtract fx or the first frame jumps.
+      stopSlide(false);
       thumb.dataset.sliding = '1';
 
       (function step() {
@@ -233,8 +257,12 @@ function initDraggable() {
       dragging = true;
       startMX = e.clientX;
       startMY = e.clientY;
-      startBX = parseFloat(thumb.dataset.bx) || 0;
-      startBY = parseFloat(thumb.dataset.by) || 0;
+      // Absorb current float offset so drag starts from visual position
+      const { fx, fy } = floatOffset(thumb);
+      startBX = (parseFloat(thumb.dataset.bx) || 0) + fx;
+      startBY = (parseFloat(thumb.dataset.by) || 0) + fy;
+      thumb.dataset.bx = startBX;
+      thumb.dataset.by = startBY;
       trail.length = 0;
       trail.push({ x: e.clientX, y: e.clientY, t: performance.now() });
       thumb.dataset.dragging = '1';
@@ -280,7 +308,7 @@ function initDraggable() {
           vy = (l.y - f.y) / frames;
           const speed = Math.hypot(vx, vy);
           if (speed > MAX_V) { vx = vx / speed * MAX_V; vy = vy / speed * MAX_V; }
-          if (speed > 0.5) { startSlide(); return; }
+          if (speed > 0.5) { delete thumb.dataset.dragging; startSlide(); return; }
         }
         startReturn();
       }
