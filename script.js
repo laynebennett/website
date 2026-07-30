@@ -338,6 +338,17 @@ function initLightbox() {
 /* ────────────────────────────────────────────── */
 /*  BOOT                                          */
 /* ────────────────────────────────────────────── */
+window.addEventListener('pageshow', e => {
+  if (e.persisted) {
+    const overlay = document.getElementById('page-transition');
+    if (overlay) {
+      overlay.classList.remove('active');
+      overlay.style.opacity = '0';
+      overlay.style.pointerEvents = 'none';
+    }
+  }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   initCollage();
   initDraggable();
