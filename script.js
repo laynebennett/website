@@ -71,6 +71,9 @@ function positionThumbs(thumbs) {
       thumb.dataset.brot = rot;
     }
 
+    thumb.dataset.origbx = bx;
+    thumb.dataset.origby = by;
+
     thumb.style.left      = '50%';
     thumb.style.top       = '50%';
     thumb.style.transform = `translate(calc(-50% + ${bx}px), calc(-50% + ${by}px)) rotate(${rot}deg)`;
@@ -146,6 +149,47 @@ function initDraggable() {
       };
     }
 
+    let returnRaf    = null;
+    let returnTimer  = null;
+
+    function stopReturn() {
+      if (returnRaf)   { cancelAnimationFrame(returnRaf); returnRaf = null; }
+      if (returnTimer) { clearTimeout(returnTimer); returnTimer = null; }
+    }
+
+    function startReturn() {
+      stopReturn();
+      returnTimer = setTimeout(() => {
+        thumb.dataset.sliding = '1';
+        const startBX = parseFloat(thumb.dataset.bx) || 0;
+        const startBY = parseFloat(thumb.dataset.by) || 0;
+        let progress = 0;
+        (function step() {
+          const ox = parseFloat(thumb.dataset.origbx) || 0;
+          const oy = parseFloat(thumb.dataset.origby) || 0;
+          progress = Math.min(progress + 0.001, 1);
+          // cubic ease-in-out
+          const t = progress < 0.5
+            ? 4 * progress * progress * progress
+            : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+          const bx = startBX + (ox - startBX) * t;
+          const by = startBY + (oy - startBY) * t;
+          thumb.dataset.bx = bx;
+          thumb.dataset.by = by;
+          thumb.style.transform =
+            `translate(calc(-50% + ${bx}px), calc(-50% + ${by}px)) rotate(0deg)`;
+          if (progress >= 1) {
+            thumb.dataset.bx = ox;
+            thumb.dataset.by = oy;
+            delete thumb.dataset.sliding;
+            returnRaf = null;
+            return;
+          }
+          returnRaf = requestAnimationFrame(step);
+        })();
+      }, 1000);
+    }
+
     function stopSlide() {
       if (slideRaf) { cancelAnimationFrame(slideRaf); slideRaf = null; }
       delete thumb.dataset.sliding;
@@ -159,7 +203,7 @@ function initDraggable() {
         vx *= FRICTION;
         vy *= FRICTION;
 
-        if (Math.abs(vx) < 0.15 && Math.abs(vy) < 0.15) { stopSlide(); return; }
+        if (Math.abs(vx) < 0.15 && Math.abs(vy) < 0.15) { stopSlide(); startReturn(); return; }
 
         let bx = parseFloat(thumb.dataset.bx) || 0;
         let by = parseFloat(thumb.dataset.by) || 0;
@@ -185,6 +229,7 @@ function initDraggable() {
       if (e.button !== 0) return;
       e.preventDefault();
       stopSlide();
+      stopReturn();
       dragging = true;
       startMX = e.clientX;
       startMY = e.clientY;
@@ -217,6 +262,10 @@ function initDraggable() {
       document.body.style.userSelect = '';
 
       const moved = Math.abs(e.clientX - startMX) > 4 || Math.abs(e.clientY - startMY) > 4;
+      if (!moved) {
+        startReturn();
+      }
+
       if (moved) {
         thumb.addEventListener('click',
           ev => { ev.stopImmediatePropagation(); ev.preventDefault(); },
@@ -233,6 +282,7 @@ function initDraggable() {
           if (speed > MAX_V) { vx = vx / speed * MAX_V; vy = vy / speed * MAX_V; }
           if (speed > 0.5) { startSlide(); return; }
         }
+        startReturn();
       }
 
       delete thumb.dataset.dragging;
