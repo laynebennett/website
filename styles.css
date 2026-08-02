@@ -300,7 +300,7 @@ img { display: block; max-width: 100%; }
 
 .footer-heading {
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.22em;
   color: var(--fg-muted);
@@ -310,7 +310,7 @@ img { display: block; max-width: 100%; }
 
 .about-text {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 2.1;
   color: var(--fg-dim);
   max-width: 440px;
@@ -343,7 +343,7 @@ img { display: block; max-width: 100%; }
   stroke-linejoin: round;
 }
 .contact-link span {
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.18em;
   font-weight: 700;
 }
