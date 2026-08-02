@@ -225,7 +225,7 @@ img { display: block; max-width: 100%; }
 
 .thumb-label {
   font-family: var(--font-mono);
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.22em;
   color: var(--fg-dim);

@@ -84,7 +84,7 @@ function positionThumbs(thumbs) {
   });
 }
 
-const AMP = 30;
+const AMP = 40;
 
 function floatOffset(thumb) {
   const t     = S.tick * 0.00042;
