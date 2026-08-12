@@ -695,6 +695,12 @@ img { display: block; max-width: 100%; }
     transform: none !important;
     opacity: 1 !important;
     transition: none !important;
+    min-width: 0;
+  }
+
+  .thumb-label {
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   .thumb-img-wrap {
