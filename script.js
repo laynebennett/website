@@ -25,6 +25,7 @@ const LAYOUT = [
   [   0, 0.3,   0,  1.0 ],   // far right (clears portrait)
   [  162, 0.40,  0,  1.0  ],   // far left (clears portrait)
   [ -172, 0.2,   0,  1.0 ],   // far left, lower
+  [ -172, 0.2,   0,  1.0 ],   // far left, lower
 ];
 
 let floatRunning = false;
@@ -84,7 +85,7 @@ function positionThumbs(thumbs) {
   });
 }
 
-const AMP = 40;
+const AMP = 10;
 
 function floatOffset(thumb) {
   const t     = S.tick * 0.00042;
