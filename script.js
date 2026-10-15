@@ -508,22 +508,41 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  // Parallax: smooth, frame-synchronized thumbnail scrolling
+
+  // Parallax: eased, smooth thumbnail scrolling
   const thumbsWrapper = document.querySelector('.thumbs-wrapper');
 
   if (thumbsWrapper) {
+    let targetY = window.scrollY * 0.5;
+    let currentY = targetY;
     let parallaxFrame = null;
 
-    window.addEventListener('scroll', () => {
-      if (parallaxFrame !== null) return;
+    function updateParallax() {
+      // Smoothly approach the target position
+      currentY += (targetY - currentY) * 0.12;
 
-      parallaxFrame = requestAnimationFrame(() => {
-        thumbsWrapper.style.transform =
-          `translate3d(0, ${window.scrollY * 0.5}px, 0)`;
+      if (Math.abs(targetY - currentY) < 0.1) {
+        currentY = targetY;
+      }
 
+      thumbsWrapper.style.transform =
+        `translate3d(0, ${currentY}px, 0)`;
+
+      if (currentY !== targetY) {
+        parallaxFrame = requestAnimationFrame(updateParallax);
+      } else {
         parallaxFrame = null;
-      });
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+      targetY = window.scrollY * 0.5;
+
+      if (parallaxFrame === null) {
+        parallaxFrame = requestAnimationFrame(updateParallax);
+      }
     }, { passive: true });
   }
+
 
 });
