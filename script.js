@@ -507,11 +507,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.05 }).observe(footer);
   }
 
-  // Parallax: thumbs scroll at half speed
+
+  // Parallax: smooth, frame-synchronized thumbnail scrolling
   const thumbsWrapper = document.querySelector('.thumbs-wrapper');
+
   if (thumbsWrapper) {
+    let parallaxFrame = null;
+
     window.addEventListener('scroll', () => {
-      thumbsWrapper.style.transform = `translateY(${window.scrollY * 0.5}px)`;
+      if (parallaxFrame !== null) return;
+
+      parallaxFrame = requestAnimationFrame(() => {
+        thumbsWrapper.style.transform =
+          `translate3d(0, ${window.scrollY * 0.5}px, 0)`;
+
+        parallaxFrame = null;
+      });
     }, { passive: true });
   }
+
 });

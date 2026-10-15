@@ -670,6 +670,11 @@ img { display: block; max-width: 100%; }
   .thumbs-wrapper {
     order: 1;
   }
+
+  .thumbs-wrapper {
+    will-change: transform;
+  }
+
   .portrait-img {
     height: 44vh;
     max-width: 80vw;
