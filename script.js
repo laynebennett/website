@@ -30,26 +30,38 @@ const LAYOUT = [
 
 let floatRunning = false;
 
-function initCollage() {
+
+async function initCollage() {
   const thumbs = document.querySelectorAll('.project-thumb');
   if (!thumbs.length) return;
 
   thumbs.forEach(thumb => {
     if (!thumb.dataset.phase) {
       thumb.dataset.phase = (Math.random() * Math.PI * 2).toFixed(4);
-      thumb.dataset.spd   = (0.55 + Math.random() * 0.7).toFixed(3);
+      thumb.dataset.spd = (0.55 + Math.random() * 0.7).toFixed(3);
     }
+
+    // Hide immediately, before image loading finishes.
+    thumb.style.opacity = '0';
   });
 
-  if (window.innerWidth <= 768) return; // CSS grid handles mobile
+  if (window.innerWidth <= 768) return;
 
+  // Position thumbnails without starting their reveal.
   positionThumbs(thumbs);
+
+  // Wait until all thumbnail images are ready.
+  await waitForThumbnailImages(thumbs);
+
+  // Start the staggered fade-in.
+  positionThumbs(thumbs, true);
 
   if (!floatRunning) {
     floatRunning = true;
     animateFloat(thumbs);
   }
 }
+
 
 async function waitForThumbnailImages(thumbs) {
   const images = [...thumbs].flatMap(thumb =>
