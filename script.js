@@ -138,7 +138,7 @@ function positionThumbs(thumbs, reveal = false) {
     if (reveal) {
       thumb.style.opacity = '0';
       thumb.style.transition =
-        `opacity 1.9s cubic-bezier(0.23,1,0.32,1) ${160 + i * 140}ms`;
+        `opacity 0.9s cubic-bezier(0.23,1,0.32,1) ${160 + i * 140}ms`;
 
       requestAnimationFrame(() => {
         thumb.style.opacity = '1';
