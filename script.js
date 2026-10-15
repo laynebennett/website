@@ -51,39 +51,90 @@ function initCollage() {
   }
 }
 
-function positionThumbs(thumbs) {
+async function waitForThumbnailImages(thumbs) {
+  const images = [...thumbs].flatMap(thumb =>
+    [...thumb.querySelectorAll('img')]
+  );
+
+  await Promise.all(images.map(async img => {
+    // Wait for the image to finish loading.
+    if (!img.complete) {
+      await new Promise(resolve => {
+        img.addEventListener('load', resolve, { once: true });
+        img.addEventListener('error', resolve, { once: true });
+      });
+    }
+
+    // Wait for decoding where supported.
+    if (img.naturalWidth > 0 && img.decode) {
+      await img.decode().catch(() => {});
+    }
+  }));
+}
+
+
+async function waitForThumbnailImages(thumbs) {
+  const images = [...thumbs].flatMap(thumb =>
+    [...thumb.querySelectorAll('img')]
+  );
+
+  await Promise.all(images.map(async img => {
+    // Wait for the image to finish loading.
+    if (!img.complete) {
+      await new Promise(resolve => {
+        img.addEventListener('load', resolve, { once: true });
+        img.addEventListener('error', resolve, { once: true });
+      });
+    }
+
+    // Wait for decoding where supported.
+    if (img.naturalWidth > 0 && img.decode) {
+      await img.decode().catch(() => {});
+    }
+  }));
+}
+
+function positionThumbs(thumbs, reveal = false) {
   const refSize = Math.min(window.innerWidth, window.innerHeight);
 
   thumbs.forEach((thumb, i) => {
-    // Use baked-in positions from HTML data attrs; fall back to LAYOUT
-    let bx  = parseFloat(thumb.dataset.bx);
-    let by  = parseFloat(thumb.dataset.by);
+    let bx = parseFloat(thumb.dataset.bx);
+    let by = parseFloat(thumb.dataset.by);
     let rot = parseFloat(thumb.dataset.brot) || 0;
 
     if (isNaN(bx) || isNaN(by)) {
       const [angle, rFactor, baseRot] = LAYOUT[i] || [i * 45, 0.36, 0];
-      const rad    = (angle * Math.PI) / 180;
+      const rad = (angle * Math.PI) / 180;
       const radius = refSize * rFactor;
-      bx  = Math.cos(rad) * radius;
-      by  = Math.sin(rad) * radius;
+      bx = Math.cos(rad) * radius;
+      by = Math.sin(rad) * radius;
       rot = baseRot;
-      thumb.dataset.bx   = bx;
-      thumb.dataset.by   = by;
+
+      thumb.dataset.bx = bx;
+      thumb.dataset.by = by;
       thumb.dataset.brot = rot;
     }
 
     thumb.dataset.origbx = bx;
     thumb.dataset.origby = by;
 
-    thumb.style.left      = '50%';
-    thumb.style.top       = '50%';
-    thumb.style.transform = `translate(calc(-50% + ${bx}px), calc(-50% + ${by}px)) rotate(${rot}deg)`;
+    thumb.style.left = '50%';
+    thumb.style.top = '50%';
+    thumb.style.transform =
+      `translate(calc(-50% + ${bx}px), calc(-50% + ${by}px)) rotate(${rot}deg)`;
 
-    thumb.style.opacity    = '0';
-    thumb.style.transition = `opacity 0.9s cubic-bezier(0.23,1,0.32,1) ${160 + i * 70}ms`;
-    requestAnimationFrame(() => { thumb.style.opacity = '1'; });
+    if (reveal) {
+      thumb.style.opacity = '0';
+      thumb.style.transition =
+        `opacity 0.9s cubic-bezier(0.23,1,0.32,1) ${160 + i * 70}ms`;
+
+      requestAnimationFrame(() => {
+        thumb.style.opacity = '1';
+      });
+    }
   });
 }
+
 
 const AMP = 10;
 
