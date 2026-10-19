@@ -519,7 +519,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateParallax() {
       // Smoothly approach the target position
-      currentY += (targetY - currentY) * 0.4;
+      currentY += (targetY - currentY) * 0.8;
 
       if (Math.abs(targetY - currentY) < 0.1) {
         currentY = targetY;
